@@ -6,7 +6,8 @@ export function tokenRegex(opts = {}) {
   return new RegExp(
     `(?!^|\\(|\\s)*` + // find beginning of token
       `([-]+)?` + // capture prepended negation character
-      `([\\w.$]+)` + // the attribute name
+      // `([\\w.$]+)` + // the attribute name
+      `([^:\\s]+)` + // the attribute name
       `${opts.partial ? "?" : ""}` + // assume it's a token, even with no attribute
       `:${opts.partial ? "?" : ""}` + // assume it's a token, even with no colon
       `(?!:)` + // make sure colon isn't repeated
