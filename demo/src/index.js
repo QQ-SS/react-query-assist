@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import { injectGlobal } from "emotion";
 import { parse } from "lucene";
 import QueryAssist from "../../src";

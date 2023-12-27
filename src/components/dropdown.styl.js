@@ -1,4 +1,6 @@
-import styled, { keyframes } from 'react-emotion'
+import { keyframes } from "@emotion/core";
+import styled from "@emotion/styled";
+import React from "react";
 
 import {
   top,
@@ -17,8 +19,8 @@ import {
   fontWeight,
   fontFamily,
   lineHeight,
-  letterSpacing
-} from 'styled-system'
+  letterSpacing,
+} from "styled-system";
 
 export const swingDown = keyframes`
   0% {
@@ -29,9 +31,9 @@ export const swingDown = keyframes`
     opacity: 1;
     transform: perspective(50em) rotateX(0deg);
   }
-`
+`;
 
-export const Container = styled('aside')`
+export const Container = styled("aside")`
   display: inline-block;
   position: absolute;
   z-index: 10;
@@ -54,24 +56,24 @@ export const Container = styled('aside')`
   ${fontFamily}
   ${lineHeight}
   ${letterSpacing}
-`
+`;
 
 Container.defaultProps = {
-  bg: '#555555',
-  boxShadow: '0 4px 10px rgba(0, 0, 0, .25)',
-  color: '#FFFFFF',
-  minWidth: '280px'
-}
+  bg: "#555555",
+  boxShadow: "0 4px 10px rgba(0, 0, 0, .25)",
+  color: "#FFFFFF",
+  minWidth: "280px",
+};
 
-export const Section = styled('section')`
+export const Section = styled("section")`
   padding: 15px;
-  text-align: ${props => props.center ? 'center' : 'inherit'};
+  text-align: ${(props) => (props.center ? "center" : "inherit")};
   :not(:last-child) {
-    border-bottom: 1px solid rgba(255, 255, 255, .15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   }
-`
+`;
 
-export const Suggestions = styled('ul')`
+export const Suggestions = styled("ul")`
   list-style-type: none;
   line-height: 20px;
   margin: 10px 0;
@@ -81,13 +83,13 @@ export const Suggestions = styled('ul')`
   ${color}
   ${borders}
   ${maxHeight}
-`
+`;
 
 Suggestions.defaultProps = {
-  maxHeight: '200px'
-}
+  maxHeight: "200px",
+};
 
-export const Suggestion = styled('li')`
+export const Suggestion = styled("li")`
   cursor: pointer;
   border: 1px solid transparent;
   overflow: hidden;
@@ -96,25 +98,26 @@ export const Suggestion = styled('li')`
   ${space}
   ${maxWidth}
 
-  ${props => props.active && color}
-  ${props => props.active && borders}
-  ${props => props.active && borderColor}
-`
+  ${(props) => props.active && color}
+  ${(props) => props.active && borders}
+  ${(props) => props.active && borderColor}
+`;
 
 Suggestion.defaultProps = {
-  bg: '#FFFFFF',
-  color: '#000000',
-  p: '3px 15px',
-  maxWidth: '320px'
-}
+  bg: "#FFFFFF",
+  color: "#000000",
+  p: "3px 15px",
+  maxWidth: "320px",
+};
 
 export const Operators = styled(Section)`
   padding: 15px 0;
-`
+`;
 
-export const Operator = styled('div')`
+export const Operator = styled("div")`
   display: inline-block;
-  background: ${props => props.active ? 'rgba(255, 255, 255, 0.2)' : 'none'};
+  background: ${(props) =>
+    props.active ? "rgba(255, 255, 255, 0.2)" : "none"};
   font-weight: 500;
   line-height: 18px;
   padding: 5px 10px;
@@ -122,14 +125,14 @@ export const Operator = styled('div')`
   &:hover {
     background: rgba(255, 255, 255, 0.1);
   }
-`
+`;
 
 export const OperatorLone = styled(Operator)`
   display: block;
   margin-bottom: 5px;
-`
+`;
 
-export const Key = styled('div')`
+export const Key = styled("div")`
   display: inline-block;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 2px;
@@ -141,22 +144,22 @@ export const Key = styled('div')`
   vertical-align: middle;
   padding: 2px 5px;
   margin-right: 5px;
-`
+`;
 
 export const KeyOutline = styled(Key)`
   background: none;
-  border: 1px solid ${props => props.theme.color};
-  color: ${props => props.theme.color};
+  border: 1px solid ${(props) => props.theme.color};
+  color: ${(props) => props.theme.color};
   font-size: 8px;
   padding: 0;
-  width: ${props => props.long ? '36px' : '18px'};
+  width: ${(props) => (props.long ? "36px" : "18px")};
   height: 18px;
-`
+`;
 
-export const Helper = styled('div')`
+export const Helper = styled("div")`
   display: inline-block;
   opacity: 0.5;
   &:not(:last-child) {
     margin-right: 15px;
   }
-`
+`;
