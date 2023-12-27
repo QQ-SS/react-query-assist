@@ -51,6 +51,7 @@ export const Link = styled("a")`
 const data = [
   {
     name: "level",
+    label: "级别",
     type: "string",
     enumerations: ["info", "error", "warn", "debug", "critical"],
   },
