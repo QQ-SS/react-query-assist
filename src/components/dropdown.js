@@ -264,10 +264,10 @@ export default class extends PureComponent {
       switch (attribute.type) {
         case 'int':
         case 'float':
-          operators.push({ name: 'GT', char: '>', active: this.state.operator === '>' })
-          operators.push({ name: 'LT', char: '<', active: this.state.operator === '<' })
-          operators.push({ name: 'GTE', char: '>=', active: this.state.operator === '>=' })
-          operators.push({ name: 'LTE', char: '<=', active: this.state.operator === '<=' })
+          operators.push({ name: '大于', char: '>', active: this.state.operator === '>' })
+          operators.push({ name: '小于', char: '<', active: this.state.operator === '<' })
+          operators.push({ name: '大于等于', char: '>=', active: this.state.operator === '>=' })
+          operators.push({ name: '小于等于', char: '<=', active: this.state.operator === '<=' })
           break
       }
     }
@@ -331,7 +331,7 @@ export default class extends PureComponent {
             active={this.state.negated}
             onClick={() => this.setOperator('-')}>
             <Key>-</Key>
-            NEGATE
+            取非
           </OperatorLone>
 
           {this.getOperators().map((operator, key) =>
@@ -349,12 +349,12 @@ export default class extends PureComponent {
             <Helper>
               <KeyOutline>▲</KeyOutline>
               <KeyOutline>▼</KeyOutline>
-              to navigate
+              选择
             </Helper>
 
             <Helper>
               <KeyOutline long>↵</KeyOutline>
-              to select
+              确定
             </Helper>
           </Section>}
 
