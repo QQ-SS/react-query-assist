@@ -184,7 +184,9 @@ export default class extends Component {
 
     this.setState(
       {
-        value: `${before}${chunk}${appended}${after}`,
+        value: `${before}${chunk}${appended}${after}`
+          .replace(/ and /gi, " AND ")
+          .replace(/ or /gi, " OR "),
         dropdownClosed: appended !== ":",
       },
       () => {
