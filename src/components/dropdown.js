@@ -45,6 +45,7 @@ export default class extends PureComponent {
 
   constructor(props) {
     super(props);
+    this.refContainer = React.createRef();
     this.onKeyDown = this.onKeyDown.bind(this);
     this.handleEnterKey = this.handleEnterKey.bind(this);
     this.handleEscKey = this.handleEscKey.bind(this);
@@ -70,12 +71,22 @@ export default class extends PureComponent {
   componentDidMount() {
     this.filterSuggestions(this.props.value);
     this.props.keyboardHelpers &&
-      document.addEventListener("keydown", this.onKeyDown, false);
+      this.refContainer.current &&
+      this.refContainer.current.parentElement.addEventListener(
+        "keydown",
+        this.onKeyDown,
+        false
+      );
   }
 
   componentWillUnmount() {
     this.props.keyboardHelpers &&
-      document.removeEventListener("keydown", this.onKeyDown, false);
+      this.refContainer.current &&
+      this.refContainer.current.parentElement.removeEventListener(
+        "keydown",
+        this.onKeyDown,
+        false
+      );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -112,7 +123,8 @@ export default class extends PureComponent {
   }
 
   handleEscKey(evt) {
-    evt.preventDefault();
+    // evt.preventDefault();
+    evt.stopPropagation(); // escape key 禁止事件冒泡
     this.props.onClose(true);
   }
 
@@ -175,7 +187,6 @@ export default class extends PureComponent {
 
   getSuggestions(attribute) {
     const { nameKey, attributes } = this.props;
-
     return attribute
       ? attribute.enumerations || []
       : attributes.map((attr) => attr[nameKey]);
@@ -307,6 +318,7 @@ export default class extends PureComponent {
 
     return (
       <Container
+        ref={this.refContainer}
         left={this.props.offsetX || 0}
         top={this.props.offsetY || 0}
         {...this.props.dropdownProps}
