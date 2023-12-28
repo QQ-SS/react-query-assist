@@ -5,6 +5,8 @@
 
 A smart search bar for React that comes with built-in autocomplete and token visualization.
 
+中文支持
+
 ![demo animation][demo]
 
 <a name="token"></a>

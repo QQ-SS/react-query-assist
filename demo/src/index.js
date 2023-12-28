@@ -50,8 +50,14 @@ export const Link = styled("a")`
 
 const data = [
   {
+    value: "658a7b75e22bef46f3f531c5.658a7c02e22bef46f3f531ca",
+    name: "开设的班型.乳儿班（6-12个月）",
+    label: "开班",
+    type: "string",
+    enumerations: ["true", "false"],
+  },
+  {
     name: "level",
-    label: "级别",
     type: "string",
     enumerations: ["info", "error", "warn", "debug", "critical"],
   },
@@ -122,6 +128,7 @@ class Demo extends Component {
       <Container>
         <Title>Basic Example</Title>
         <Assist
+          nameKeyIncludes={["name", "label"]}
           placeholder="Search Logs ⌘ ⇧ F"
           onSubmit={(query) => {
             if (query) {

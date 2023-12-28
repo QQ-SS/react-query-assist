@@ -75,6 +75,7 @@ export const Section = styled("section")`
 
 export const Suggestions = styled("ul")`
   list-style-type: none;
+  padding-inline-start: 0px;
   line-height: 20px;
   margin: 10px 0;
   overflow: auto;
