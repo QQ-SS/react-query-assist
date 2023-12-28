@@ -24,6 +24,7 @@ export default class extends Component {
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
     onSubmit: PropTypes.func,
+    submitOnBlur: PropTypes.bool,
     keyboardHelpers: PropTypes.bool,
     collapseOnBlur: PropTypes.bool,
     footerComponent: PropTypes.func,
@@ -41,6 +42,7 @@ export default class extends Component {
     defaultValue: "",
     onChange: () => {},
     onSubmit: () => {},
+    submitOnBlur: true,
     placeholder: "Search",
     inputProps: {},
     dropdownProps: {},
@@ -130,6 +132,7 @@ export default class extends Component {
     this.setState({
       focused: false,
     });
+    this.props.submitOnBlur && this.props.onSubmit(this.state.value);
   }
 
   onKeyDown(evt) {

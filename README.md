@@ -116,6 +116,7 @@ By default, [keyboard helpers](#keyboardHelpers) for the dropdown are enabled. M
 | `nameKey` | string | The key to use for the attribute name in the data object. | `name` |
 | `nameKeyIncludes` | array | Keys to look at when determining a valid attribute name (e.g. if you want to display short names, but keep long names valid.) | `['name']` |
 | `placeholder` | string | The placeholder text to use for the input field. | `Search` |
+| `submitOnBlur` | boolean | 失去焦点时是否提交查询。 | true |
 | `collapseOnBlur` | boolean | The input field automatically expands to fit the text, but if this is `true`, will collapse to one line when it is not in focus. | - |
 | <a name="keyboardHelpers"></a>`keyboardHelpers` | boolean | Whether to enable the keyboard helpers for the dropdown. | `true` |
 | <a name="inputProps"></a>`inputProps` | object | The props to use for the input component. See the [themes](#themes) section. | - |
