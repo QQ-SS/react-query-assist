@@ -52,6 +52,7 @@ export default class extends Component {
 
   constructor(props) {
     super(props);
+    this._marker = React.createRef();
     this.onFocus = this.onFocus.bind(this);
     this.onBlur = this.onBlur.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
@@ -62,6 +63,7 @@ export default class extends Component {
     this.shouldAutosuggest = this.shouldAutosuggest.bind(this);
     this.onClose = this.onClose.bind(this);
     // this.onClickToken = this.onClickToken.bind(this)
+    this.onClick = this.onClick.bind(this);
     this.extract = this.extract.bind(this);
     this.getCurrentChunk = this.getCurrentChunk.bind(this);
     this.buildOverlay = this.buildOverlay.bind(this);
@@ -104,7 +106,7 @@ export default class extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const newState = {};
 
     // default value can be empty string (to clear search)
@@ -156,7 +158,7 @@ export default class extends Component {
 
   onAutosuggest() {
     const { value } = this.state;
-    const { offsetLeft, offsetTop } = this._marker;
+    const { offsetLeft, offsetTop } = this._marker.current;
 
     const { chunk } = this.getCurrentChunk(value);
     const suggest = this.shouldAutosuggest(chunk);
@@ -248,6 +250,10 @@ export default class extends Component {
   //   this._input.focus()
   //   this._input.setSelectionRange(end, end)
   // }
+
+  onClick() {
+    this._input && this._input.focus();
+  }
 
   extract(value) {
     const { nameKeyIncludes } = this.props;
@@ -349,7 +355,7 @@ export default class extends Component {
       <Inline
         key={`after-${index}`}
         style={{ outline: this.props.debug ? "1px solid red" : "none" }}
-        innerRef={(ref) => (this._marker = ref)}
+        ref={this._marker}
       >
         {stuffOnRight}
       </Inline>,
@@ -385,7 +391,7 @@ export default class extends Component {
     return (
       <PageClick outsideOnly notify={this.onClose}>
         <Container className={className}>
-          <InputContainer {...inputProps} onClick={() => this._input.focus()}>
+          <InputContainer {...inputProps} onClick={this.onClick}>
             <Overlay collapsed={collapsed}>{overlayComponents}</Overlay>
 
             <Input

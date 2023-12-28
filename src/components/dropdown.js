@@ -46,6 +46,8 @@ export default class extends PureComponent {
   constructor(props) {
     super(props);
     this.refContainer = React.createRef();
+    this._list = React.createRef();
+    this._selected = React.createRef();
     this.onKeyDown = this.onKeyDown.bind(this);
     this.handleEnterKey = this.handleEnterKey.bind(this);
     this.handleEscKey = this.handleEscKey.bind(this);
@@ -89,7 +91,7 @@ export default class extends PureComponent {
       );
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.value !== nextProps.value) {
       this.filterSuggestions(nextProps.value);
     }
@@ -163,18 +165,19 @@ export default class extends PureComponent {
   }
 
   adjustListScroll() {
-    const { offsetTop, clientHeight: selectorHeight } = this._selected;
+    const { offsetTop, clientHeight: selectorHeight } = this._selected.current;
 
-    const { scrollTop, clientHeight: listHeight } = this._list;
+    const { scrollTop, clientHeight: listHeight } = this._list.current;
 
     const topWaypoint = selectorHeight;
     const bottomWaypoint = listHeight - selectorHeight;
     const position = offsetTop - scrollTop;
 
     if (position > bottomWaypoint) {
-      this._list.scrollTop += selectorHeight + (position - bottomWaypoint);
+      this._list.current.scrollTop +=
+        selectorHeight + (position - bottomWaypoint);
     } else if (position < topWaypoint) {
-      this._list.scrollTop =
+      this._list.current.scrollTop =
         offsetTop - selectorHeight + (position - topWaypoint);
     }
   }
@@ -323,10 +326,7 @@ export default class extends PureComponent {
         top={this.props.offsetY || 0}
         {...this.props.dropdownProps}
       >
-        <Suggestions
-          {...this.props.listProps}
-          innerRef={(ref) => (this._list = ref)}
-        >
+        <Suggestions {...this.props.listProps} ref={this._list}>
           {this.state.suggestions.map((suggestion, key) => {
             const isActive = this.state.highlightedIdx === key;
 
@@ -336,9 +336,7 @@ export default class extends PureComponent {
                 active={isActive}
                 onClick={this.acceptSuggestion}
                 onMouseOver={() => this.setState({ highlightedIdx: key })}
-                innerRef={
-                  isActive ? (ref) => (this._selected = ref) : undefined
-                }
+                ref={isActive ? this._selected : undefined}
                 {...this.props.selectorProps}
               >
                 {suggestion}
