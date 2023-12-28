@@ -68,7 +68,9 @@ const placeholderColor = style({
   key: "colors",
 });
 
-export const Input = styled(CleanInput)`
+export const Input = styled(({ lineHeight, placeholderColor, ...props }) => (
+  <CleanInput {...props} />
+))`
   display: block;
   background: none;
   border: none;
