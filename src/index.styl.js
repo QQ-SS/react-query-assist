@@ -77,6 +77,8 @@ export const Input = styled(CleanInput)`
   font: inherit;
   width: 100%;
   padding: 0;
+  /* fix 启用 collapseOnBlur 后，右边出现滚动条 */
+  overflow: hidden;
   white-space: pre-wrap;
   word-wrap: break-word;
   /* we only want overlay text visible */
