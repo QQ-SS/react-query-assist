@@ -145,7 +145,9 @@ export default class extends Component {
 
   onChange(evt) {
     this.setState({
-      value: evt.target.value,
+      value: (evt.target.value || "")
+        .replace(/ and /gi, " AND ")
+        .replace(/ or /gi, " OR "),
     });
   }
 
