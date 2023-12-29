@@ -1,11 +1,13 @@
-# React Query Assist
+# React Query Assist version 1.3.0
 
 [![Travis][build-badge]][build]
 [![npm package][npm-badge]][npm]
 
 A smart search bar for React that comes with built-in autocomplete and token visualization.
 
-中文支持
+依赖 React@17
+
+支持中文字段名
 
 ![demo animation][demo]
 
@@ -17,7 +19,7 @@ A token is a key-value in a search query that contains an attribute and a value 
 ## Getting Started
 
 ```bash
-$ npm install -S react-query-assist emotion react-emotion
+$ npm install -S react-query-assist
 ```
 
 > `emotion` is a peer dependency of this library to allow for easy custom styling.
